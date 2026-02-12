@@ -34,6 +34,10 @@ export async function extractPageAsImage(file: File, pageNum: number): Promise<s
     canvas.height = viewport.height;
     canvas.width = viewport.width;
 
-    await page.render({ canvasContext: context, viewport }).promise;
+    await page.render({
+        canvasContext: context,
+        viewport: viewport,
+        canvas: canvas
+    }).promise;
     return canvas.toDataURL('image/png');
 }
